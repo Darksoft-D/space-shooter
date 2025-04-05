@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdm8eka5iogg"]
+
+[ext_resource type="Script" path="res://Enemies/frigate.gd" id="1_ep0dd"]
+[ext_resource type="Texture2D" uid="uid://5h7l7u7rn6wg" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Designs - Base/PNGs/Nautolan Ship - Frigate - Base.png" id="1_mpaeu"]
+[ext_resource type="PackedScene" uid="uid://bj7xa1134mjke" path="res://scenes/killzone.tscn" id="2_kbp6l"]
+[ext_resource type="PackedScene" uid="uid://dvi75pd2753wh" path="res://scenes/hurtbox.tscn" id="3_fsopi"]
+
+[node name="Frigate" type="Node2D"]
+position = Vector2(0, -2)
+scale = Vector2(2, 2)
+script = ExtResource("1_ep0dd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mpaeu")
+
+[node name="killzone" parent="." instance=ExtResource("2_kbp6l")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="killzone"]
+polygon = PackedVector2Array(-6, 11.5, 6, 11.5, 9, 9, 9, 4, 10, 4, 10, 0.5, 11, 0.5, 11, -3, 23, -10.5, 7, -18, -7, -18, -23, -10.5, -11, -3, -11, 0, -10, 0, -10, 4, -9, 4, -9, 9)
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_fsopi")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox"]
+polygon = PackedVector2Array(-6, 11.5, 6, 11.5, 9, 9, 9, 4, 10, 4, 10, 0.5, 11, 0.5, 11, -3, 23, -10.5, 7, -18, -7, -18, -23, -10.5, -11, -3, -11, 0, -10, 0, -10, 4, -9, 4, -9, 9)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(24, 0)
+collision_mask = 32
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-24, 0)
+collision_mask = 32
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, 32)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

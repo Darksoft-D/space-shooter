@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://dck584qsjxdeo"]
+
+[ext_resource type="Texture2D" uid="uid://cm6008l2upli" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Weapon Effects - Projectiles/PNGs/Nautolan - Rocket.png" id="1_1q55b"]
+[ext_resource type="Script" path="res://scenes/rocket_enemy.gd" id="1_pmsvl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21sct"]
+atlas = ExtResource("1_1q55b")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so8j7"]
+atlas = ExtResource("1_1q55b")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogfb1"]
+atlas = ExtResource("1_1q55b")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc5r2"]
+atlas = ExtResource("1_1q55b")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpo7n"]
+atlas = ExtResource("1_1q55b")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebo2v"]
+atlas = ExtResource("1_1q55b")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p8elj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21sct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_so8j7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogfb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc5r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpo7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebo2v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fjxmr"]
+radius = 2.0
+height = 21.0
+
+[node name="Rocket_Enemy" type="Area2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_pmsvl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_p8elj")
+autoplay = "default"
+frame = 4
+frame_progress = 0.819997
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_fjxmr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -37)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

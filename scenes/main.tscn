@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dk07inxp763r3"]
+[gd_scene load_steps=10 format=4 uid="uid://dk07inxp763r3"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3frfm"]
 [ext_resource type="PackedScene" uid="uid://i6g1tgmvlqyb" path="res://scenes/player.tscn" id="1_iv6k7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://sv4pucsn3cja" path="res://Enemies/enemy.tscn" id="3_8phst"]
 [ext_resource type="PackedScene" uid="uid://c1hc4wtvynomr" path="res://Enemies/fighter.tscn" id="5_o8ig1"]
 [ext_resource type="PackedScene" uid="uid://cfv06lhek2lro" path="res://Enemies/scout.tscn" id="6_dw4in"]
+[ext_resource type="PackedScene" uid="uid://cdm8eka5iogg" path="res://Enemies/frigate.tscn" id="7_gk3y2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kotrn"]
 texture = ExtResource("2_qqmgu")
@@ -184,3 +185,6 @@ position = Vector2(1063, 136)
 
 [node name="Scout" parent="." instance=ExtResource("6_dw4in")]
 position = Vector2(65, 268)
+
+[node name="Frigate" parent="." instance=ExtResource("7_gk3y2")]
+position = Vector2(1061, 380)
