@@ -23,11 +23,11 @@ polygon = PackedVector2Array(-15, 11, -11, 11, -9, 9, -9, 10, -4, 10, -4, 6, -2,
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 target_position = Vector2(15, 0)
-collision_mask = 8
+collision_mask = 32
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 target_position = Vector2(-15, 0)
-collision_mask = 8
+collision_mask = 32
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_21k0e")]
 scale = Vector2(2, 2)

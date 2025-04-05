@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://bs55425wl4fta"]
+
+[ext_resource type="Texture2D" uid="uid://biq6ofbnvlrqm" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Weapon Effects - Projectiles/PNGs/Nautolan - Bullet.png" id="1_4uatb"]
+[ext_resource type="Script" path="res://scenes/area_2d.gd" id="1_kwimj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb6ft"]
+atlas = ExtResource("1_4uatb")
+region = Rect2(0, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw2sk"]
+atlas = ExtResource("1_4uatb")
+region = Rect2(9, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpbhj"]
+atlas = ExtResource("1_4uatb")
+region = Rect2(18, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57ffy"]
+atlas = ExtResource("1_4uatb")
+region = Rect2(27, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw81r"]
+atlas = ExtResource("1_4uatb")
+region = Rect2(36, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwd0l"]
+atlas = ExtResource("1_4uatb")
+region = Rect2(45, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o27eh"]
+atlas = ExtResource("1_4uatb")
+region = Rect2(54, 0, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64ldp"]
+atlas = ExtResource("1_4uatb")
+region = Rect2(63, 0, 9, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s25js"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb6ft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jw2sk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpbhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57ffy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw81r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwd0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o27eh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64ldp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bhgsy"]
+radius = 3.0
+height = 12.0
+
+[node name="Bullet" type="Area2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_kwimj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s25js")
+autoplay = "default"
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_bhgsy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -28)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
