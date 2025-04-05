@@ -1,0 +1,146 @@
+[gd_scene load_steps=21 format=3 uid="uid://bjryc1f01dl5i"]
+
+[ext_resource type="Script" path="res://scenes/bomb.gd" id="1_lhih2"]
+[ext_resource type="Texture2D" uid="uid://d7x68d234grj" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Weapon Effects - Projectiles/PNGs/Nautolan - Bomb.png" id="1_qstlc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brwrh"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vgo1"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c3do"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf2w7"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3texj"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvyvs"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kc2l"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71hcg"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1hkk"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbfw3"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqxur"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkv1d"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miv5o"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i64b5"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar3wn"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdixh"]
+atlas = ExtResource("1_qstlc")
+region = Rect2(240, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7b35m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brwrh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vgo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c3do")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cf2w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3texj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvyvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kc2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71hcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1hkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbfw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqxur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkv1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miv5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i64b5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar3wn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdixh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6wj1k"]
+radius = 5.09902
+
+[node name="Bomb" type="Area2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+script = ExtResource("1_lhih2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7b35m")
+autoplay = "default"
+frame_progress = 0.340211
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6wj1k")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -18)
+scale = Vector2(0.5, 0.5)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1hc4wtvynomr"]
+
+[ext_resource type="Texture2D" uid="uid://coqo8lcgwlmht" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Designs - Base/PNGs/Nautolan Ship - Fighter - Base.png" id="1_o41qr"]
+
+[node name="Fighter" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o41qr")

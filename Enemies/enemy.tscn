@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://sv4pucsn3cja"]
+
+[ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_hyw1o"]
+[ext_resource type="Texture2D" uid="uid://bek0au8itlc3i" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Designs - Base/PNGs/Nautolan Ship - Bomber - Base.png" id="1_rpacm"]
+[ext_resource type="PackedScene" uid="uid://bj7xa1134mjke" path="res://scenes/killzone.tscn" id="2_xnvg0"]
+[ext_resource type="PackedScene" uid="uid://dvi75pd2753wh" path="res://scenes/hurtbox.tscn" id="4_21k0e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pbdh6"]
+radius = 7.51665
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_hyw1o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rpacm")
+flip_v = true
+
+[node name="killzone" parent="." groups=["enemy"] instance=ExtResource("2_xnvg0")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="killzone"]
+rotation = 3.14159
+polygon = PackedVector2Array(-15, 11, -11, 11, -9, 9, -9, 10, -4, 10, -4, 6, -2, 6, 0, 8, 2, 6, 4, 6, 4, 10, 9, 10, 11, 11, 15, 11, 15, 1, 8, -8, 8, -10, 5, -13, -5, -13, -8, -10, -8, -8, -15, 1)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(15, 0)
+collision_mask = 8
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-15, 0)
+collision_mask = 8
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_21k0e")]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_pbdh6")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, 22)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

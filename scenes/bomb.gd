@@ -1,0 +1,17 @@
+extends Area2D
+
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
+var speed = 250
+
+func _ready() -> void:
+	anim.play("default")
+
+func _physics_process(delta: float) -> void:
+	global_position.y += speed * delta
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+
+func _on_body_entered(body: Node2D) -> void:
+	body.queue_free()

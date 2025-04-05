@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://dyad44dhfv1cp"]
+
+[ext_resource type="Texture2D" uid="uid://bp5muhd3u6xdq" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Zapper.png" id="1_yal6v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xw23l"]
+atlas = ExtResource("1_yal6v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22tka"]
+atlas = ExtResource("1_yal6v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plw72"]
+atlas = ExtResource("1_yal6v")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m33p8"]
+atlas = ExtResource("1_yal6v")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wv5f"]
+atlas = ExtResource("1_yal6v")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjcpf"]
+atlas = ExtResource("1_yal6v")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4fyp"]
+atlas = ExtResource("1_yal6v")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m26hm"]
+atlas = ExtResource("1_yal6v")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i4y3f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xw23l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22tka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plw72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m33p8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wv5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjcpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4fyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m26hm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0mnv"]
+size = Vector2(4.8711, 32)
+
+[node name="Lazer" type="Area2D"]
+collision_layer = 4
+collision_mask = 19
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i4y3f")
+frame_progress = 0.782069
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.23175, 1)
+shape = SubResource("RectangleShape2D_x0mnv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 22)
+scale = Vector2(0.5, 0.5)

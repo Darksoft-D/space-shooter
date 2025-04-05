@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://i6g1tgmvlqyb"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_hv72u"]
+[ext_resource type="Texture2D" uid="uid://ilpmqmoec455" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="2_wo52j"]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(2, 2)
+collision_mask = 13
+motion_mode = 1
+script = ExtResource("1_hv72u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wo52j")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -8, 15, 5, 15, 11, 3, 7, 3, 12, -3, 12, -3, 7, -15, 11, -15, 5)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1, -20)
