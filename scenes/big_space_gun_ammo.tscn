@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi8yulw6wkefe"]
+
+[ext_resource type="PackedScene" uid="uid://dccf4yqhxa36h" path="res://scenes/auto_cannon_ammo.tscn" id="1_j2mrm"]
+[ext_resource type="Script" path="res://scenes/big_space_gun_ammo.gd" id="2_ckks7"]
+
+[node name="big_space_gun_ammo" instance=ExtResource("1_j2mrm")]
+script = ExtResource("2_ckks7")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+animation = &"new_animation"
+autoplay = "new_animation"

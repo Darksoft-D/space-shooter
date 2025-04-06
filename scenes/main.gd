@@ -2,14 +2,20 @@ extends Node2D
 
 var player = null
 var can_spawn = true
+var can_spawn_ammo = true
 var instance = null
+var last_ammo = null
 var row = null
 @onready var player_pos: Node2D = $PlayerPos
 @onready var projectiles_container: Node2D = $ProjectilesContainer
+@onready var label: Label = $CanvasLayer/HBoxContainer/Label
+@onready var label_2: Label = $CanvasLayer/HBoxContainer/Label2
+@onready var label_3: Label = $CanvasLayer/HBoxContainer/Label3
 
 @export var enemy_scenes: Array[PackedScene] = []
 @export var enemy_spawnpoints: Array[Node2D] = []
 @export var enemy_rows: Array[Node2D] = []
+@export var ammos: Array[PackedScene] = []
 var enemy_row1: Array = []
 var enemy_row2: Array = []
 var enemy_row3: Array = []
@@ -27,13 +33,19 @@ func _physics_process(delta: float) -> void:
 		instance.global_position.y += delta * 130
 
 func _process(delta: float) -> void:
+	label.text = str(Global.laser_ammo)
+	label_2.text = str(Global.big_space_gun_ammo)
+	label_3.text = str(Global.auto_cannon_ammo)
+	if can_spawn_ammo:
+		can_spawn_ammo = false
+		ammo_spawn()
+		await get_tree().create_timer(10.0).timeout
+		can_spawn_ammo = true
 	if can_spawn:
 		can_spawn = false
 		await get_tree().create_timer(5.0).timeout
 		enemy_spawn()
 		can_spawn = true
-		if enemy_row1.size() == 5 and enemy_row2.size() == 5 and enemy_row3.size() == 5:
-			can_spawn = false
 		
 	if Input.is_action_just_pressed("Reload"):
 		get_tree().reload_current_scene()
@@ -60,10 +72,10 @@ func enemy_spawn():
 	elif row == enemy_rows[2]:
 		Global.on_spawn_timer = 3.0
 		enemy_row3.append(instance)
-	if enemy_row1.size() == 5:
-		enemy_rows.erase($Row)
-	if enemy_row2.size() == 5:
-		enemy_rows.erase($Row2)
-	if enemy_row3.size() == 5:
-		enemy_rows.erase($Row3)
-	
+
+func ammo_spawn():
+	var ammo = ammos.pick_random().instantiate()
+	var pos = Vector2(randi_range(30, 1120), randi_range(270, 600))
+	ammo.global_position = pos
+	add_child(ammo)
+	last_ammo = ammo

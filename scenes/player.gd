@@ -42,25 +42,31 @@ func _process(delta: float) -> void:
 				shoot()
 				await get_tree().create_timer(0.5).timeout
 			2:
-				weapons.play("laser_shoot")
-				await weapons.animation_finished
-				shoot_lazer()
-				weapons.play("laser_reload")
-				await weapons.animation_finished
-				weapons.play("laser")
+				if Global.laser_ammo > 0:
+					weapons.play("laser_shoot")
+					await weapons.animation_finished
+					shoot_lazer()
+					weapons.play("laser_reload")
+					await weapons.animation_finished
+					weapons.play("laser")
+					Global.laser_ammo -= 1
 			3:
-				weapons.play("big_space_gun_shoot")
-				await weapons.animation_finished
-				shoot_3()
-				weapons.play("big_space_gun_reload")
-				await weapons.animation_finished
-				weapons.play("big_space_gun")
+				if Global.big_space_gun_ammo > 0:
+					weapons.play("big_space_gun_shoot")
+					await weapons.animation_finished
+					shoot_3()
+					weapons.play("big_space_gun_reload")
+					await weapons.animation_finished
+					weapons.play("big_space_gun")
+					Global.big_space_gun_ammo -= 1
 			4:
-				weapons.play("auto_cannon_shoot")
-				await weapons.animation_finished
-				shoot_homing_bullet()
-				await get_tree().create_timer(1.0).timeout
-				weapons.play("auto_cannon_default")
+				if Global.auto_cannon_ammo > 0:
+					weapons.play("auto_cannon_shoot")
+					await weapons.animation_finished
+					shoot_homing_bullet()
+					await get_tree().create_timer(1.0).timeout
+					weapons.play("auto_cannon_default")
+					Global.auto_cannon_ammo -= 1
 		shoot_cd = false
 
 func _physics_process(delta: float) -> void:
