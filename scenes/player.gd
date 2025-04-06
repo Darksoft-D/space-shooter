@@ -8,17 +8,32 @@ var auto_cannon_bullet = preload("res://scenes/auto_cannon_bullet.tscn")
 var shoot_cd = false
 var selected_weapon = 1
 @onready var marker_2d: Marker2D = $Marker2D
-
 @export var lazer_points: Array[Marker2D] = []
+@onready var sprite_base: AnimatedSprite2D = $SpriteBase
+@onready var weapons: AnimatedSprite2D = $Weapons
 
 func _process(delta: float) -> void:
+	if Global.player_health > 15:
+		sprite_base.play("default")
+	elif Global.player_health <= 15 and Global.player_health > 10:
+		sprite_base.play("slightly_damaged")
+	elif Global.player_health <= 10 and Global.player_health > 5:
+		sprite_base.play("damaged")
+	elif Global.player_health <= 5 and Global.player_health > 0:
+		sprite_base.play("very_damaged")
+	elif Global.player_health <= 0:
+		queue_free()
 	if Input.is_action_just_pressed("1st weapon"):
+		weapons.play("default")
 		selected_weapon = 1
 	if Input.is_action_just_pressed("2nd weapon"):
+		weapons.play("laser")
 		selected_weapon = 2
 	if Input.is_action_just_pressed("3rd weapon"):
+		weapons.play("big_space_gun")
 		selected_weapon = 3
 	if Input.is_action_just_pressed("4th weapon"):
+		weapons.play("auto_cannon_default")
 		selected_weapon = 4
 	if Input.is_action_pressed("shoot") and !shoot_cd:
 		shoot_cd = true
@@ -27,14 +42,25 @@ func _process(delta: float) -> void:
 				shoot()
 				await get_tree().create_timer(0.5).timeout
 			2:
+				weapons.play("laser_shoot")
+				await weapons.animation_finished
 				shoot_lazer()
-				await get_tree().create_timer(10.0).timeout
+				weapons.play("laser_reload")
+				await weapons.animation_finished
+				weapons.play("laser")
 			3:
+				weapons.play("big_space_gun_shoot")
+				await weapons.animation_finished
 				shoot_3()
-				await get_tree().create_timer(2.0).timeout
+				weapons.play("big_space_gun_reload")
+				await weapons.animation_finished
+				weapons.play("big_space_gun")
 			4:
+				weapons.play("auto_cannon_shoot")
+				await weapons.animation_finished
 				shoot_homing_bullet()
 				await get_tree().create_timer(1.0).timeout
+				weapons.play("auto_cannon_default")
 		shoot_cd = false
 
 func _physics_process(delta: float) -> void:

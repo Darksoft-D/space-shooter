@@ -7,6 +7,7 @@ var is_shooting = false
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var muzzle: Marker2D = $Muzzle
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 var bomb = preload("res://scenes/bomb.tscn")
 var can_move = false
 
@@ -16,6 +17,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if health <= 0:
+		can_move = false
+		anim.play("destruction")
+		await anim.animation_finished
 		queue_free()
 	if !can_move:
 		return

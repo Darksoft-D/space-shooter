@@ -8,6 +8,8 @@ var can_move = false
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var muzzle: Marker2D = $Muzzle
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
 var rocket_enemy = preload("res://scenes/rocket_enemy.tscn")
 
 func _ready() -> void:
@@ -16,6 +18,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if health <= 0:
+		can_move = false
+		anim.play("destruction")
+		await anim.animation_finished
 		queue_free()
 	if !can_move:
 		return
@@ -32,6 +37,9 @@ func _process(delta: float) -> void:
 	position.x += speed * delta * direction
 
 func bullet_instantiate():
+	anim.play("shoot")
+	await anim.animation_finished
+	anim.play("default")
 	Global.laser_shot.emit(rocket_enemy, muzzle.global_position)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
@@ -44,3 +52,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("auto_cannon_bullet"):
 		health -= 1
 		area.queue_free()
+	if health > 0:
+		anim.play("hit")
+		await anim.animation_finished
+		anim.play("default")

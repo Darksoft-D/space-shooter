@@ -1,16 +1,168 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfv06lhek2lro"]
+[gd_scene load_steps=25 format=3 uid="uid://cfv06lhek2lro"]
 
 [ext_resource type="PackedScene" uid="uid://bj7xa1134mjke" path="res://scenes/killzone.tscn" id="1_dm8qm"]
 [ext_resource type="Script" path="res://Enemies/scout.gd" id="1_lq7qv"]
 [ext_resource type="PackedScene" uid="uid://dvi75pd2753wh" path="res://scenes/hurtbox.tscn" id="2_gnfkd"]
-[ext_resource type="Texture2D" uid="uid://dpjm25qp6h8a5" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Designs - Base/PNGs/Nautolan Ship - Scout - Base.png" id="3_i83in"]
+[ext_resource type="Texture2D" uid="uid://chr4o8vksbks4" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Destruction/PNGs/Nautolan Ship - Scout.png" id="2_khcpn"]
+[ext_resource type="Texture2D" uid="uid://dfvytusnym4u" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Weapons/PNGs/Nautolan Ship - Scout - Weapons.png" id="3_p5ib0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pbfd"]
+atlas = ExtResource("2_khcpn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fctnx"]
+atlas = ExtResource("2_khcpn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebuy5"]
+atlas = ExtResource("2_khcpn")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_643h1"]
+atlas = ExtResource("2_khcpn")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imaqa"]
+atlas = ExtResource("2_khcpn")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk4rp"]
+atlas = ExtResource("2_khcpn")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j3wi"]
+atlas = ExtResource("2_khcpn")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nthp"]
+atlas = ExtResource("2_khcpn")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6lmf"]
+atlas = ExtResource("2_khcpn")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5wbl"]
+atlas = ExtResource("2_khcpn")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy64w"]
+atlas = ExtResource("2_khcpn")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beew8"]
+atlas = ExtResource("3_p5ib0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy86p"]
+atlas = ExtResource("3_p5ib0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eytc"]
+atlas = ExtResource("3_p5ib0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1mii"]
+atlas = ExtResource("3_p5ib0")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvghp"]
+atlas = ExtResource("3_p5ib0")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyg6e"]
+atlas = ExtResource("3_p5ib0")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcksx"]
+atlas = ExtResource("3_p5ib0")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dcre5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pbfd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fctnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebuy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_643h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imaqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk4rp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j3wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nthp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6lmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5wbl")
+}],
+"loop": false,
+"name": &"destruction",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy64w")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_beew8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy86p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eytc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1mii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvghp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyg6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcksx")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 5.0
+}]
 
 [node name="Scout" type="Node2D"]
 script = ExtResource("1_lq7qv")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("3_i83in")
+sprite_frames = SubResource("SpriteFrames_dcre5")
+animation = &"shoot"
+autoplay = "default"
 flip_v = true
 
 [node name="killzone" parent="." instance=ExtResource("1_dm8qm")]

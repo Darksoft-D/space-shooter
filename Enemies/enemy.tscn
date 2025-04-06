@@ -1,16 +1,121 @@
-[gd_scene load_steps=5 format=3 uid="uid://sv4pucsn3cja"]
+[gd_scene load_steps=19 format=3 uid="uid://sv4pucsn3cja"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_hyw1o"]
 [ext_resource type="Texture2D" uid="uid://bek0au8itlc3i" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Designs - Base/PNGs/Nautolan Ship - Bomber - Base.png" id="1_rpacm"]
 [ext_resource type="PackedScene" uid="uid://bj7xa1134mjke" path="res://scenes/killzone.tscn" id="2_xnvg0"]
+[ext_resource type="Texture2D" uid="uid://cnvigcdasccri" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Destruction/PNGs/Nautolan Ship - Bomber.png" id="3_q7s8g"]
 [ext_resource type="PackedScene" uid="uid://dvi75pd2753wh" path="res://scenes/hurtbox.tscn" id="4_21k0e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx1n0"]
+atlas = ExtResource("1_rpacm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5mvy"]
+atlas = ExtResource("3_q7s8g")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yek8"]
+atlas = ExtResource("3_q7s8g")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gml6p"]
+atlas = ExtResource("3_q7s8g")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36n8j"]
+atlas = ExtResource("3_q7s8g")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ja2no"]
+atlas = ExtResource("3_q7s8g")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dmo4"]
+atlas = ExtResource("3_q7s8g")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0acf"]
+atlas = ExtResource("3_q7s8g")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bt7d"]
+atlas = ExtResource("3_q7s8g")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyqgm"]
+atlas = ExtResource("3_q7s8g")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3581c"]
+atlas = ExtResource("3_q7s8g")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jcd7"]
+atlas = ExtResource("3_q7s8g")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7cqjp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx1n0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5mvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yek8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gml6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36n8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ja2no")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dmo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0acf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bt7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyqgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3581c")
+}],
+"loop": false,
+"name": &"destruction",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jcd7")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
 
 [node name="Node2D" type="Node2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_hyw1o")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_rpacm")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7cqjp")
+animation = &"hit"
+autoplay = "default"
 flip_v = true
 
 [node name="killzone" parent="." groups=["enemy"] instance=ExtResource("2_xnvg0")]
