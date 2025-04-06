@@ -44,6 +44,7 @@ func on_player_laser_shot(projectile_scene, location):
 	var instance = projectile_scene.instantiate()
 	instance.global_position = location
 	projectiles_container.add_child(instance)
+	
 
 func enemy_spawn():
 	instance = enemy_scenes.pick_random().instantiate()

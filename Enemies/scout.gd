@@ -1,5 +1,6 @@
 extends Node2D
 
+var health = 1
 var speed = 450
 var is_shooting = false
 var direction = -1
@@ -14,6 +15,8 @@ func _ready() -> void:
 	can_move = true
 
 func _process(delta: float) -> void:
+	if health <= 0:
+		queue_free()
 	if !can_move:
 		return
 	if !is_shooting:
@@ -32,4 +35,12 @@ func bullet_instantiate():
 	Global.laser_shot.emit(bullet, muzzle.global_position)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	queue_free()
+	if area.is_in_group("rocket"):
+		health -= 1
+	if area.is_in_group("bundleofenergy"):
+		health -= 5
+	if area.is_in_group("laser"):
+		health -= 3
+	if area.is_in_group("auto_cannon_bullet"):
+		health -= 1
+		area.queue_free()

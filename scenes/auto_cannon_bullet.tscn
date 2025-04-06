@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://dfpthovp1ahlr"]
+
+[ext_resource type="Script" path="res://scenes/auto_cannon_bullet.gd" id="1_lsyoa"]
+[ext_resource type="Texture2D" uid="uid://boscmn2e4yucd" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Auto cannon bullet.png" id="1_qvjvk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anmag"]
+atlas = ExtResource("1_qvjvk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_of61w"]
+atlas = ExtResource("1_qvjvk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fava"]
+atlas = ExtResource("1_qvjvk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k13d6"]
+atlas = ExtResource("1_qvjvk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0q73a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anmag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_of61w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fava")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k13d6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8f8b7"]
+size = Vector2(10, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0lcw3"]
+radius = 251.098
+
+[node name="AutoCannonBullet" type="Area2D" groups=["auto_cannon_bullet"]]
+collision_layer = 4
+collision_mask = 18
+script = ExtResource("1_lsyoa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0q73a")
+frame = 2
+frame_progress = 0.734483
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_8f8b7")
+
+[node name="Area2D" type="Area2D" parent="." groups=["auto_cannon_bullet"]]
+collision_layer = 128
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0lcw3")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

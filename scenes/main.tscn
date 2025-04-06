@@ -326,6 +326,7 @@ tile_map_data = PackedByteArray("AAAAAAEAAAAEAAAAAAAAAAIAAAAEAAEAAAAAAAMAAAAEAAI
 tile_set = SubResource("TileSet_5ully")
 
 [node name="Player" parent="." instance=ExtResource("1_iv6k7")]
+z_index = 5
 position = Vector2(339, 453)
 
 [node name="ProjectilesContainer" type="Node2D" parent="."]
