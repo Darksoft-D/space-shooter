@@ -7,8 +7,15 @@ var is_shooting = false
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var muzzle: Marker2D = $Muzzle
 var bomb = preload("res://scenes/bomb.tscn")
+var can_move = false
+
+func _ready() -> void:
+	await get_tree().create_timer(Global.on_spawn_timer).timeout
+	can_move = true
 
 func _process(delta: float) -> void:
+	if !can_move:
+		return
 	if !is_shooting:
 		is_shooting = true
 		bomb_instantiate()

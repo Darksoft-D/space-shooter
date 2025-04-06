@@ -7,8 +7,15 @@ var direction = -1
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var muzzle: Marker2D = $Muzzle
 var bullet = preload("res://scenes/area_2d.tscn")
+var can_move = false
+
+func _ready() -> void:
+	await get_tree().create_timer(Global.on_spawn_timer).timeout
+	can_move = true
 
 func _process(delta: float) -> void:
+	if !can_move:
+		return
 	if !is_shooting:
 		is_shooting = true
 		bullet_instantiate()

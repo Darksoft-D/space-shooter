@@ -128,7 +128,7 @@ radius = 5.09902
 
 [node name="Bomb" type="Area2D"]
 scale = Vector2(2, 2)
-collision_layer = 4
+collision_layer = 64
 script = ExtResource("1_lhih2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

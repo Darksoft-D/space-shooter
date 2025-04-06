@@ -3,12 +3,19 @@ extends Node2D
 var speed = 300
 var is_shooting = false
 var direction = -1
+var can_move = false
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var muzzle: Marker2D = $Muzzle
 var rocket_enemy = preload("res://scenes/rocket_enemy.tscn")
 
+func _ready() -> void:
+	await get_tree().create_timer(Global.on_spawn_timer).timeout
+	can_move = true
+
 func _process(delta: float) -> void:
+	if !can_move:
+		return
 	if !is_shooting:
 		is_shooting = true
 		bullet_instantiate()

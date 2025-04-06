@@ -14,6 +14,7 @@ script = ExtResource("1_ep0dd")
 texture = ExtResource("1_mpaeu")
 
 [node name="killzone" parent="." instance=ExtResource("2_kbp6l")]
+collision_layer = 10
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="killzone"]
 polygon = PackedVector2Array(-6, 11.5, 6, 11.5, 9, 9, 9, 4, 10, 4, 10, 0.5, 11, 0.5, 11, -3, 23, -10.5, 7, -18, -7, -18, -23, -10.5, -11, -3, -11, 0, -10, 0, -10, 4, -9, 4, -9, 9)
@@ -25,11 +26,11 @@ polygon = PackedVector2Array(-6, 11.5, 6, 11.5, 9, 9, 9, 4, 10, 4, 10, 0.5, 11, 
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 target_position = Vector2(24, 0)
-collision_mask = 32
+collision_mask = 34
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 target_position = Vector2(-24, 0)
-collision_mask = 32
+collision_mask = 34
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(0, 32)

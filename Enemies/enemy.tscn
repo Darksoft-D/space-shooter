@@ -13,6 +13,7 @@ texture = ExtResource("1_rpacm")
 flip_v = true
 
 [node name="killzone" parent="." groups=["enemy"] instance=ExtResource("2_xnvg0")]
+collision_layer = 10
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="killzone"]
 rotation = 3.14159
@@ -20,11 +21,11 @@ polygon = PackedVector2Array(-15, 11, -11, 11, -9, 9, -9, 10, -4, 10, -4, 6, -2,
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 target_position = Vector2(15, 0)
-collision_mask = 32
+collision_mask = 34
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 target_position = Vector2(-15, 0)
-collision_mask = 32
+collision_mask = 34
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_21k0e")]
 scale = Vector2(2, 2)

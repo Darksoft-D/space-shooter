@@ -73,8 +73,7 @@ height = 12.0
 
 [node name="Bullet" type="Area2D"]
 scale = Vector2(2, 2)
-collision_layer = 4
-collision_mask = 3
+collision_layer = 64
 script = ExtResource("1_kwimj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
