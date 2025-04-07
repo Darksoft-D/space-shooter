@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://dccf4yqhxa36h"]
+[gd_scene load_steps=30 format=3 uid="uid://dccf4yqhxa36h"]
 
 [ext_resource type="Texture2D" uid="uid://boscmn2e4yucd" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Auto cannon bullet.png" id="1_jqqa6"]
 [ext_resource type="Script" path="res://scenes/auto_cannon_ammo.gd" id="1_yn7p7"]
 [ext_resource type="Texture2D" uid="uid://doo7jq58t2svk" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Big Space Gun.png" id="3_sn1gh"]
 [ext_resource type="Texture2D" uid="uid://bp5muhd3u6xdq" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Zapper.png" id="4_m75e1"]
+[ext_resource type="AudioStream" uid="uid://bvmfrrlppyglw" path="res://assets/Game Sounds/ItemPickup.wav" id="5_upa44"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rolm0"]
 atlas = ExtResource("1_jqqa6")
@@ -189,5 +190,8 @@ autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_h8tld")
+
+[node name="Picking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_upa44")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

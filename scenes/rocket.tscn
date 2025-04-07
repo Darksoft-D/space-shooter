@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://birc01lotxvl6"]
+[gd_scene load_steps=9 format=3 uid="uid://birc01lotxvl6"]
 
 [ext_resource type="Texture2D" uid="uid://b6dc1q7bnab77" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Rocket.png" id="1_a36bs"]
 [ext_resource type="Script" path="res://scenes/rocket.gd" id="1_gckf1"]
+[ext_resource type="AudioStream" uid="uid://ds46mbdblq8aa" path="res://assets/Game Sounds/ShootMain.wav" id="3_tui3k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnkfw"]
 atlas = ExtResource("1_a36bs")
@@ -54,6 +55,10 @@ shape = SubResource("RectangleShape2D_x0mnv")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, 22)
 scale = Vector2(0.5, 0.5)
+
+[node name="ShootMain" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tui3k")
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

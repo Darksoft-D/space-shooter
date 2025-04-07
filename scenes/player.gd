@@ -11,6 +11,8 @@ var selected_weapon = 1
 @export var lazer_points: Array[Marker2D] = []
 @onready var sprite_base: AnimatedSprite2D = $SpriteBase
 @onready var weapons: AnimatedSprite2D = $Weapons
+@onready var explosion: AudioStreamPlayer2D = $Explosion
+
 
 func _process(delta: float) -> void:
 	if Global.player_health > 15:
@@ -22,7 +24,10 @@ func _process(delta: float) -> void:
 	elif Global.player_health <= 5 and Global.player_health > 0:
 		sprite_base.play("very_damaged")
 	elif Global.player_health <= 0:
+		explosion.play()
 		queue_free()
+	if Global.game_over == true:
+		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("1st weapon"):
 		weapons.play("default")
 		selected_weapon = 1
@@ -40,7 +45,7 @@ func _process(delta: float) -> void:
 		match selected_weapon:
 			1:
 				shoot()
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(1.0).timeout
 			2:
 				if Global.laser_ammo > 0:
 					weapons.play("laser_shoot")

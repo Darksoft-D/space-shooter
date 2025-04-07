@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://i6g1tgmvlqyb"]
+[gd_scene load_steps=79 format=3 uid="uid://i6g1tgmvlqyb"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_hv72u"]
 [ext_resource type="Texture2D" uid="uid://ilpmqmoec455" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="2_wo52j"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://coa722gxkl2nw" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Big Space Gun.png" id="8_mr34g"]
 [ext_resource type="Texture2D" uid="uid://c7bbrtcfyyyim" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Zapper.png" id="9_kw15f"]
 [ext_resource type="Texture2D" uid="uid://b387tqr67h72r" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Spritesheet.png" id="10_s8f1t"]
+[ext_resource type="AudioStream" uid="uid://d28sxpow5q1fy" path="res://assets/Game Sounds/ShipHit.wav" id="12_sbsun"]
+[ext_resource type="AudioStream" uid="uid://dyh8d6ciblimf" path="res://assets/Game Sounds/ShipExplosion.wav" id="13_3lnvo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u0ylb"]
 atlas = ExtResource("2_ykev1")
@@ -624,3 +626,9 @@ position = Vector2(0, -244)
 
 [node name="Marker2D17" type="Marker2D" parent="lazerPoints" groups=["lazerPoint"]]
 position = Vector2(0, -260)
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_sbsun")
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_3lnvo")

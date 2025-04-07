@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b3416eoyqim7j"
+path="res://.godot/imported/BigSpaceGun.wav-bde09123668f329cb6e3f26bc193e3aa.sample"
+
+[deps]
+
+source_file="res://assets/Game Sounds/BigSpaceGun.wav"
+dest_files=["res://.godot/imported/BigSpaceGun.wav-bde09123668f329cb6e3f26bc193e3aa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

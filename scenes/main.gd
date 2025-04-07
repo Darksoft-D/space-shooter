@@ -8,9 +8,12 @@ var last_ammo = null
 var row = null
 @onready var player_pos: Node2D = $PlayerPos
 @onready var projectiles_container: Node2D = $ProjectilesContainer
-@onready var label: Label = $CanvasLayer/HBoxContainer/Label
-@onready var label_2: Label = $CanvasLayer/HBoxContainer/Label2
-@onready var label_3: Label = $CanvasLayer/HBoxContainer/Label3
+@onready var label: Label = $CanvasLayer/PanelContainer2/HBoxContainer/Label
+@onready var label_2: Label = $CanvasLayer/PanelContainer2/HBoxContainer/Label2
+@onready var label_3: Label = $CanvasLayer/PanelContainer2/HBoxContainer/Label3
+@onready var label_score: Label = $CanvasLayer/PanelContainer3/HBoxContainer/LabelScore
+@onready var health: Label = $CanvasLayer/PanelContainer3/HBoxContainer/Health
+@onready var panel_container: PanelContainer = $CanvasLayer/PanelContainer
 
 @export var enemy_scenes: Array[PackedScene] = []
 @export var enemy_spawnpoints: Array[Node2D] = []
@@ -19,12 +22,15 @@ var row = null
 var enemy_row1: Array = []
 var enemy_row2: Array = []
 var enemy_row3: Array = []
+var game_over_scene = preload("res://game_over.tscn")
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	assert(player != null)
 	player.global_position = player_pos.global_position
 	Global.laser_shot.connect(on_player_laser_shot)
+	await get_tree().create_timer(5.0).timeout
+	panel_container.hide()
 
 func _physics_process(delta: float) -> void:
 	if instance == null:
@@ -36,6 +42,13 @@ func _process(delta: float) -> void:
 	label.text = str(Global.laser_ammo)
 	label_2.text = str(Global.big_space_gun_ammo)
 	label_3.text = str(Global.auto_cannon_ammo)
+	label_score.text = " " + str(Global.score) + " "
+	health.text = str(Global.player_health) + " "
+	if Global.player_health <= 0:
+		health.text = "0 "
+		var game_over = game_over_scene.instantiate()
+		game_over.global_position = global_position
+		add_child(game_over)
 	if can_spawn_ammo:
 		can_spawn_ammo = false
 		ammo_spawn()

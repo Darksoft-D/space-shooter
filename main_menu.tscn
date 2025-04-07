@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://jccljhwbateo"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_03jur"]
+[ext_resource type="FontFile" uid="uid://b2upas0iaeo5r" path="res://assets/PixelOperator8.ttf" id="1_17y1e"]
+[ext_resource type="Texture2D" uid="uid://cbwt85ukfq2wa" path="res://assets/Space_Game_GUI_PNG/PNG/Main_UI/BG.png" id="1_166gj"]
+[ext_resource type="Texture2D" uid="uid://ctxxxhwoyghww" path="res://assets/Space_Game_GUI_PNG/PNG/Main_UI/Boss_Name_Table.png" id="2_ck1e7"]
+[ext_resource type="Texture2D" uid="uid://cg3d18ioi785x" path="res://assets/Space_Game_GUI_PNG/PNG/You_Lose/Play_BTN.png" id="2_tlssy"]
+[ext_resource type="AudioStream" uid="uid://c0na3qyfkf7xr" path="res://assets/Game Sounds/MainMenuTheme.mp3" id="6_rlsea"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_utl4l"]
+content_margin_left = 0.0
+texture = ExtResource("2_ck1e7")
+texture_margin_left = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k4yv"]
+atlas = ExtResource("2_tlssy")
+
+[node name="Main menu" type="Node2D"]
+script = ExtResource("1_03jur")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = 733.0
+offset_right = 1080.0
+offset_bottom = 2653.0
+rotation = -1.57029
+scale = Vector2(0.68002, 0.68002)
+texture = ExtResource("1_166gj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -319.0
+offset_top = -109.0
+offset_right = 319.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_utl4l")
+
+[node name="Button" type="Button" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_17y1e")
+theme_override_font_sizes/font_size = 148
+text = "Play"
+icon = SubResource("AtlasTexture_4k4yv")
+expand_icon = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -388.0
+offset_top = 76.0
+offset_right = 388.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_17y1e")
+theme_override_font_sizes/font_size = 64
+text = "Depths of Space"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_rlsea")
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="CanvasLayer/PanelContainer/Button" to="." method="_on_button_pressed"]

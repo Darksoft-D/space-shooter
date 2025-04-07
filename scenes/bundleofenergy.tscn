@@ -1,7 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3hm1o5suqvor"]
+[gd_scene load_steps=17 format=3 uid="uid://d3hm1o5suqvor"]
 
 [ext_resource type="Script" path="res://scenes/bundleofenergy.gd" id="1_gyw80"]
 [ext_resource type="Texture2D" uid="uid://doo7jq58t2svk" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Big Space Gun.png" id="1_qmfju"]
+[ext_resource type="AudioStream" uid="uid://b3416eoyqim7j" path="res://assets/Game Sounds/BigSpaceGun.wav" id="3_gcy1a"]
+[ext_resource type="AudioStream" uid="uid://d3x7mwsbahfto" path="res://assets/Game Sounds/BigSpaceGunExplosion.wav" id="4_5itrw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o54ea"]
 atlas = ExtResource("1_qmfju")
@@ -96,3 +98,11 @@ frame_progress = 0.274894
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aii0m")
+
+[node name="SpaceGun" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gcy1a")
+autoplay = true
+
+[node name="SpacegunExplosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5itrw")
+volume_db = -5.0

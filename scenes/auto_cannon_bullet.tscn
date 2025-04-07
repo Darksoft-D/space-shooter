@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfpthovp1ahlr"]
+[gd_scene load_steps=12 format=3 uid="uid://dfpthovp1ahlr"]
 
 [ext_resource type="Script" path="res://scenes/auto_cannon_bullet.gd" id="1_lsyoa"]
 [ext_resource type="Texture2D" uid="uid://boscmn2e4yucd" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Auto cannon bullet.png" id="1_qvjvk"]
+[ext_resource type="AudioStream" uid="uid://7d2j07jskifq" path="res://assets/Game Sounds/AutocannonFire.wav" id="3_a7wt2"]
+[ext_resource type="AudioStream" uid="uid://brobdykcd8g8x" path="res://assets/Game Sounds/AutocannonHoming.wav" id="4_xxohq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_anmag"]
 atlas = ExtResource("1_qvjvk")
@@ -66,4 +68,17 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_0lcw3")
 
+[node name="AutocannonFire" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_a7wt2")
+volume_db = -5.0
+autoplay = true
+
+[node name="AutocannonHoming" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xxohq")
+volume_db = -5.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 35)
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

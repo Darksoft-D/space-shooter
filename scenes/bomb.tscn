@@ -1,7 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjryc1f01dl5i"]
+[gd_scene load_steps=23 format=3 uid="uid://bjryc1f01dl5i"]
 
 [ext_resource type="Script" path="res://scenes/bomb.gd" id="1_lhih2"]
 [ext_resource type="Texture2D" uid="uid://d7x68d234grj" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Weapon Effects - Projectiles/PNGs/Nautolan - Bomb.png" id="1_qstlc"]
+[ext_resource type="AudioStream" uid="uid://1h8pqevu440v" path="res://assets/Game Sounds/EnemyBombLoop.wav" id="3_kgcb3"]
+[ext_resource type="AudioStream" uid="uid://d28sxpow5q1fy" path="res://assets/Game Sounds/ShipHit.wav" id="4_ihij5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brwrh"]
 atlas = ExtResource("1_qstlc")
@@ -142,5 +144,13 @@ shape = SubResource("CircleShape2D_6wj1k")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -18)
 scale = Vector2(0.5, 0.5)
+
+[node name="EnemyBombLoop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kgcb3")
+volume_db = -10.0
+autoplay = true
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ihij5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

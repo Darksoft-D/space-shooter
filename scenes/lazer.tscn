@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dyad44dhfv1cp"]
+[gd_scene load_steps=14 format=3 uid="uid://dyad44dhfv1cp"]
 
 [ext_resource type="Script" path="res://scenes/lazer.gd" id="1_xwegs"]
 [ext_resource type="Texture2D" uid="uid://bp5muhd3u6xdq" path="res://assets/Foozle_2DS0011_Void_MainShip/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/Main ship weapon - Projectile - Zapper.png" id="1_yal6v"]
+[ext_resource type="AudioStream" uid="uid://cejebcieexu64" path="res://assets/Game Sounds/ZapperLoop.wav" id="3_sj52o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xw23l"]
 atlas = ExtResource("1_yal6v")
@@ -83,5 +84,11 @@ frame_progress = 0.782069
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.23175, 1)
 shape = SubResource("RectangleShape2D_x0mnv")
+
+[node name="ZapperLoop" type="AudioStreamPlayer2D" parent="."]
+z_index = 1
+stream = ExtResource("3_sj52o")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

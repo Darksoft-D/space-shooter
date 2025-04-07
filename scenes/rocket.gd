@@ -1,10 +1,12 @@
 extends Area2D
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var shoot_main: AudioStreamPlayer2D = $ShootMain
 
 var speed = 600
 
 func _ready() -> void:
+	shoot_main.play()
 	anim.play("default")
 
 func _physics_process(delta: float) -> void:

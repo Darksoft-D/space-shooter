@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cvhkh6lpckpwm"
+path="res://.godot/imported/EnemyMissile.wav-fe1559f86090bf2acfe1f2c2b1c02f09.sample"
+
+[deps]
+
+source_file="res://assets/Game Sounds/EnemyMissile.wav"
+dest_files=["res://.godot/imported/EnemyMissile.wav-fe1559f86090bf2acfe1f2c2b1c02f09.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

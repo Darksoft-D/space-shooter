@@ -9,6 +9,8 @@ var can_move = false
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var muzzle: Marker2D = $Muzzle
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hit: AudioStreamPlayer2D = $Hit
+@onready var explosion: AudioStreamPlayer2D = $Explosion
 
 var rocket_enemy = preload("res://scenes/rocket_enemy.tscn")
 
@@ -17,7 +19,7 @@ func _ready() -> void:
 	can_move = true
 
 func _process(delta: float) -> void:
-	if health <= 0:
+	if health <= 0 and can_move:
 		can_move = false
 		anim.play("destruction")
 		await anim.animation_finished
@@ -45,14 +47,20 @@ func bullet_instantiate():
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("rocket"):
 		health -= 1
+		area.queue_free()
 	if area.is_in_group("bundleofenergy"):
 		health -= 5
+		area.queue_free()
 	if area.is_in_group("laser"):
 		health -= 3
 	if area.is_in_group("auto_cannon_bullet"):
 		health -= 1
 		area.queue_free()
 	if health > 0:
+		hit.play()
 		anim.play("hit")
 		await anim.animation_finished
 		anim.play("default")
+	if health <= 0:
+		explosion.play()
+		Global.score += 300

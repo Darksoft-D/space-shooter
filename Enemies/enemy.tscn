@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://sv4pucsn3cja"]
+[gd_scene load_steps=21 format=3 uid="uid://sv4pucsn3cja"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_hyw1o"]
 [ext_resource type="Texture2D" uid="uid://bek0au8itlc3i" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Designs - Base/PNGs/Nautolan Ship - Bomber - Base.png" id="1_rpacm"]
 [ext_resource type="PackedScene" uid="uid://bj7xa1134mjke" path="res://scenes/killzone.tscn" id="2_xnvg0"]
 [ext_resource type="Texture2D" uid="uid://cnvigcdasccri" path="res://assets/Foozle_2DS0014_Void_FleetPack_3/Foozle_2DS0014_Void_EnemyFleet_3/Nautolan/Destruction/PNGs/Nautolan Ship - Bomber.png" id="3_q7s8g"]
 [ext_resource type="PackedScene" uid="uid://dvi75pd2753wh" path="res://scenes/hurtbox.tscn" id="4_21k0e"]
+[ext_resource type="AudioStream" uid="uid://d28sxpow5q1fy" path="res://assets/Game Sounds/ShipHit.wav" id="6_c2u7n"]
+[ext_resource type="AudioStream" uid="uid://dyh8d6ciblimf" path="res://assets/Game Sounds/ShipExplosion.wav" id="7_md12r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mx1n0"]
 atlas = ExtResource("1_rpacm")
@@ -143,6 +145,12 @@ polygon = PackedVector2Array(-15, 11, -11, 11, -9, 9, -9, 10, -4, 10, -4, 6, -2,
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(0, 22)
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_c2u7n")
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_md12r")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
